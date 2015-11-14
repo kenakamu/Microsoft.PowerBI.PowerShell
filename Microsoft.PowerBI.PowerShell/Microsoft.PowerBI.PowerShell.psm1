@@ -283,7 +283,7 @@ function Add-PowerBIRows{
  Actual Data to be inserted. Rows are array of hashtable. i.e.) @{"Column1"="Value1;"Column2"="Value2"}
 
  .EXAMPLE
- Add-PowerBIRows -DataSetId 4b644350-f745-48dd-821c-f008350199a8 -TableName Table1 -Rows @{"Column1"="Value1;"Column2"="Value2"},@{"Column1"="Value1;"Column2"="Value2"}
+ Add-PowerBIRows -DataSetId 4b644350-f745-48dd-821c-f008350199a8 -TableName Table1 -Rows @{"Column1"="Value1";"Column2"="Value2"},@{"Column1"="Value1";"Column2"="Value2"}
 
  This example inserts two rows to Table1.
 
