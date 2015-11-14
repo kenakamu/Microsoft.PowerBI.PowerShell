@@ -85,12 +85,14 @@ Update-PowerBITableSchema -DataSetId 4b644350-f745-48dd-821c-f008350199a8 -Table
 ####Example: Insert rows
 Once you define table, it's time to insert rows! You can insert rows from script or from csv.
 ```PowerShell
+# Get DataSet information
+$datasetId = Get-PowerBIDataSets | ? {$_.name -eq "SampleDataSet"} | select id
 # Insert rows inline.
-Add-PowerBIRows -DataSetId 4b644350-f745-48dd-821c-f008350199a8 -TableName SampleTable1 `
+Add-PowerBIRows -DataSetId $datasetId -TableName SampleTable1 `
 -Rows @{"ID"=1;"Data"="1"},@{"ID"=2;"Data"="2"}
 
 # Insert rows from CSV which has same schema as the table
-Add-PowerBIRows -DataSetId 4b644350-f745-48dd-821c-f008350199a8 -TableName SampleTable1 `
+Add-PowerBIRows -DataSetId $datasetId -TableName SampleTable1 `
 -Rows (Import-Csv -Path ".\data.csv")
 ```
 ###How to get command details
