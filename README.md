@@ -1,4 +1,6 @@
 # Microsoft.PowerBI.PowerShell
+**this module requires Microsoft.ADAL.PowerShell module, which you can find below.<br/>
+https://github.com/kenakamu/Microsoft.ADAL.PowerShell/
 
 ### Overview 
 With Microsoft.PowerBI.PowerShell module, it is so easy to consume PowerBI now!<br/>
@@ -28,8 +30,6 @@ for more information.
 # Import Micrsoft.PowerBI.Powershell module 
 Import-Module Microsoft.PowerBI.Powershell
 ```
-This module requires Microsoft.ADAL.PowerShell module, which you can find below.<br/>
-https://github.com/kenakamu/Microsoft.ADAL.PowerShell/
 
 ####Example:Connect to PowerBI
 First of all, you connect to PowerBI by using Connect-PowerBI function. <br/>
