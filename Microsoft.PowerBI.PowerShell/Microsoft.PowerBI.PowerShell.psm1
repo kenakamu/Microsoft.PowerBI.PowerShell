@@ -44,6 +44,16 @@ function Connect-PowerBI{
  Connect-PowerBI -AuthorityName contoso.onmicrosoft.com -ClientId bf922382-cdc4-43d4-995c-0f90ecdeda21 -UserName user@contoso.onmicrosoft.com -Password password -GroupdId ce88923a-b885-4d11-997a-a240e73fb6b5
 
  This examples connects to a group of PowerBI instance of contoso.onmicrosoft.com by using specified UserName/Password.
+
+ .EXAMPLE
+ Connect-PowerBI -AuthorityName contoso.onmicrosoft.com -ClientId bf922382-cdc4-43d4-995c-0f90ecdeda21 -RedirectUrl http://localhost/powerbi 
+
+ This examples connects to PowerBI instance of contoso.onmicrosoft.com by using RedirectUrl, which may popup for authentication
+
+  .EXAMPLE
+ Connect-PowerBI -AuthorityName contoso.onmicrosoft.com -ClientId bf922382-cdc4-43d4-995c-0f90ecdeda21 -RedirectUrl http://localhost/powerbi -ForcePromptSignIn
+
+ This examples connects to PowerBI instance of contoso.onmicrosoft.com by using RedirectUrl, which popup for authentication
 #>
 
     PARAM(
@@ -57,6 +67,8 @@ function Connect-PowerBI{
         [string]$Password,
         [parameter(Mandatory=$true, ParameterSetName="RedirectUri")]
         [string]$RedirectUri,
+        [parameter(Mandatory=$false, ParameterSetName="RedirectUri")]
+        [switch]$ForcePromptSignIn,
         [parameter(Mandatory=$false)]
         [string] $GroupId
     )
@@ -132,9 +144,18 @@ function Get_PowerBIAccessToken{
     }
     else
     {
-        return Get-ADALAccessToken -AuthorityName $authorityName -ClientId $PowerBIClientId `
-        -ResourceId $PowerBIResourceId `
-        -RedirectUri $PowerBIRedirectUri
+        if($PowerBIForcePromptSignIn)
+        {
+            return Get-ADALAccessToken -AuthorityName $authorityName -ClientId $PowerBIClientId `
+            -ResourceId $PowerBIResourceId `
+            -RedirectUri $PowerBIRedirectUri -ForcePromptSignIn
+        }
+        else
+        {
+            return Get-ADALAccessToken -AuthorityName $authorityName -ClientId $PowerBIClientId `
+            -ResourceId $PowerBIResourceId `
+            -RedirectUri $PowerBIRedirectUri 
+        }
     }
 }
 
