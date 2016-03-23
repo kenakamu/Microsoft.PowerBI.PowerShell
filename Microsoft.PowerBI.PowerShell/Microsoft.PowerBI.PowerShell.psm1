@@ -1,4 +1,4 @@
-﻿# Copyright © Microsoft Corporation.  All Rights Reserved.
+# Copyright © Microsoft Corporation.  All Rights Reserved.
 # This code released under the terms of the 
 # Microsoft Public License (MS-PL, http://opensource.org/licenses/ms-pl.html.)
 # Sample Code is provided for the purpose of illustration only and is not intended to be used in a production environment. 
@@ -51,10 +51,12 @@ function Connect-PowerBI{
         [string] $AuthorityName,
         [parameter(Mandatory=$true)]
         [string] $ClientId,
-        [parameter(Mandatory=$true)]
-        [string] $UserName,
-        [parameter(Mandatory=$true)]
-        [string] $Password,
+        [parameter(Mandatory=$true, ParameterSetName="UserName")]
+        [string]$UserName,
+        [parameter(Mandatory=$true, ParameterSetName="UserName")]
+        [string]$Password,
+        [parameter(Mandatory=$true, ParameterSetName="RedirectUri")]
+        [string]$RedirectUri,
         [parameter(Mandatory=$false)]
         [string] $GroupId
     )
@@ -64,6 +66,8 @@ function Connect-PowerBI{
     $script:PowerBIClientId = $ClientId
     $script:PowerBIUserName = $UserName
     $script:PowerBIPassword = $Password
+    $script:PowerBIRedirectUri = $RedirectUri
+    $script:PowerBIForcePromptSignIn = $ForcePromptSignIn
     $script:PowerBIResourceId = "https://analysis.windows.net/powerbi/api"
     $script:PowerBIBaseAddress = "https://api.powerbi.com/v1.0/myorg/"
     if($GroupId -ne '')
@@ -120,9 +124,18 @@ function Switch-PowerBIContext{
 
 # Private AccessToken obtain function
 function Get_PowerBIAccessToken{
-    return Get-ADALAccessToken -AuthorityName $authorityName -ClientId $PowerBIClientId `
-    -ResourceId $PowerBIResourceId `
-    -UserName $PowerBIUserName -Password $PowerBIPassword
+    if($PowerBIUserName -ne '')
+    {
+        return Get-ADALAccessToken -AuthorityName $authorityName -ClientId $PowerBIClientId `
+        -ResourceId $PowerBIResourceId `
+        -UserName $PowerBIUserName -Password $PowerBIPassword 
+    }
+    else
+    {
+        return Get-ADALAccessToken -AuthorityName $authorityName -ClientId $PowerBIClientId `
+        -ResourceId $PowerBIResourceId `
+        -RedirectUri $PowerBIRedirectUri
+    }
 }
 
 # DataSet Operations
