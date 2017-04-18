@@ -16,7 +16,7 @@
 RootModule = 'Microsoft.PowerBI.PowerShell.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0'
+ModuleVersion = '1.2'
 
 # ID used to uniquely identify this module
 GUID = 'ddffa518-f9c1-4208-8eaa-0514ad64321f'
