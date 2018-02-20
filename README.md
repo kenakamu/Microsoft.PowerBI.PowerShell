@@ -11,14 +11,14 @@ https://msdn.microsoft.com/en-us/library/mt147898.aspx
 Releases are found on the [Release Page](https://github.com/kenakamu/Microsoft.PowerBI.PowerShell/releases)
 
 ### How to setup modules
-<p>1. Download Microsoft.PowerBI.Powershell.zip.</p> 
-<p>2. Right click the downloaded zip file and click "Properties". </p> 
-<p>3. Check "Unblock" checkbox and click "OK", or simply click "Unblock" button depending on OS versions. </p> 
+1. Download Microsoft.PowerBI.Powershell.zip.
+2. Right click the downloaded zip file and click "Properties". 
+3. Check "Unblock" checkbox and click "OK", or simply click "Unblock" button depending on OS versions. 
 ![Image of Unblock](https://i1.gallery.technet.s-msft.com/powershell-functions-for-16c5be31/image/file/142582/1/unblock.png)
-<p>4. Extract the zip file and copy "Microsoft.ADAL.PowerShell" folder to one of the following folders:<br/>
+4. Extract the zip file and copy "Microsoft.ADAL.PowerShell" folder to one of the following folders:<br/>
   * %USERPROFILE%\Documents\WindowsPowerShell\Modules<br/>
   * %WINDIR%\System32\WindowsPowerShell\v1.0\Modules<br/>
-<p>5. You may need to change Execution Policy to load the module. You can do so by executing following command. </p> 
+5. You may need to change Execution Policy to load the module. You can do so by executing following command. 
 ```PowerShell
  Set-ExecutionPolicy –ExecutionPolicy RemoteSigned –Scope CurrentUser
 ```
@@ -99,11 +99,11 @@ Add-PowerBIRows -DataSetId $datasetId -TableName SampleTable1 `
 ```
 ### How to get command details
 Each command has detail explanation.
-<p>Run following command to get all commands.</p>
+Run following command to get all commands.
 ```PowerShell
 Get-Command -Module Microsoft.PowerBI.PowerShell
 ```
-<p>Run following command to get help.</p>
+Run following command to get help.
 ```PowerShell
 Get-Help Add-PowerBIRows -Detailed
 ```
