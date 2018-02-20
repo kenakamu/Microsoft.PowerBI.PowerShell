@@ -10,7 +10,7 @@ https://msdn.microsoft.com/en-us/library/mt147898.aspx
 **Where do I find the latest relase?**
 Releases are found on the [Release Page](https://github.com/kenakamu/Microsoft.PowerBI.PowerShell/releases)
 
-###How to setup modules
+### How to setup modules
 <p>1. Download Microsoft.PowerBI.Powershell.zip.</p> 
 <p>2. Right click the downloaded zip file and click "Properties". </p> 
 <p>3. Check "Unblock" checkbox and click "OK", or simply click "Unblock" button depending on OS versions. </p> 
@@ -31,7 +31,7 @@ for more information.
 Import-Module Microsoft.PowerBI.Powershell
 ```
 
-####Example:Connect to PowerBI
+#### Example:Connect to PowerBI
 First of all, you connect to PowerBI by using Connect-PowerBI function. <br/>
 You need to register an application to Azure Active Directory before to obtain ClientId.
 ```PowerShell
@@ -47,7 +47,7 @@ To back to your own context, use -Me switch
 ```PowerShell
 Switch-PowerBIContext -Me
 ```
-####Example: Create DataSet
+#### Example: Create DataSet
 When you want to create your own PowerBI dataset, you need to define tables and its schema at the same time.
 ```PowerShell
 # Define columns
@@ -70,7 +70,7 @@ $dataset = New-PowerBIDataSet -DataSetName SampleDataSet -Tables $table1,$table2
 # Create the dataset
 Add-PowerBIDataSet -DataSet $dataset
 ```
-####Example: Update Schema
+#### Example: Update Schema
 In case you need to update existing table's schema, use Update-PowerBITableSchema.
 ```PowerShell
 $datasetId = Get-PowerBIDataSets | ? {$_.name -eq "SampleDataSet"} | select id
@@ -84,7 +84,7 @@ $table1 = New-PowerBITable -TableName SampleTable1 -Columns $col1,$col2,$col3
 # Update the table schema
 Update-PowerBITableSchema -DataSetId $datasetId -TableName SampleTable1
 ```
-####Example: Insert rows
+#### Example: Insert rows
 Once you define table, it's time to insert rows! You can insert rows from script or from csv.
 ```PowerShell
 # Get DataSet information
@@ -97,7 +97,7 @@ Add-PowerBIRows -DataSetId $datasetId -TableName SampleTable1 `
 Add-PowerBIRows -DataSetId $datasetId -TableName SampleTable1 `
 -Rows (Import-Csv -Path ".\data.csv")
 ```
-###How to get command details
+### How to get command details
 Each command has detail explanation.
 <p>Run following command to get all commands.</p>
 ```PowerShell
