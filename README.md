@@ -82,7 +82,7 @@ $col3 = New-PowerBIColumn -ColumnName Date -ColumnType DateTime
 # Define table with three columns, You need to use same table name
 $table1 = New-PowerBITable -TableName SampleTable1 -Columns $col1,$col2,$col3
 # Update the table schema
-Update-PowerBITableSchema -DataSetId $datasetId -TableName SampleTable1
+Update-PowerBITableSchema -DataSetId $datasetId -TableName SampleTable1 -TableSchema $table1
 ```
 #### Example: Insert rows
 Once you define table, it's time to insert rows! You can insert rows from script or from csv.
