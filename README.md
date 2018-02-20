@@ -73,7 +73,7 @@ Add-PowerBIDataSet -DataSet $dataset
 #### Example: Update Schema
 In case you need to update existing table's schema, use Update-PowerBITableSchema.
 ```PowerShell
-$datasetId = Get-PowerBIDataSets | ? {$_.name -eq "SampleDataSet"} | select id
+$datasetId = (Get-PowerBIDataSets | ? {$_.name -eq "SampleDataSet"}).id
 
 # Define columns
 $col1 = New-PowerBIColumn -ColumnName ID -ColumnType Int64
@@ -88,7 +88,7 @@ Update-PowerBITableSchema -DataSetId $datasetId -TableName SampleTable1
 Once you define table, it's time to insert rows! You can insert rows from script or from csv.
 ```PowerShell
 # Get DataSet information
-$datasetId = Get-PowerBIDataSets | ? {$_.name -eq "SampleDataSet"} | select id
+$datasetId = (Get-PowerBIDataSets | ? {$_.name -eq "SampleDataSet"}).id
 # Insert rows inline.
 Add-PowerBIRows -DataSetId $datasetId -TableName SampleTable1 `
 -Rows @{"ID"=1;"Data"="1"},@{"ID"=2;"Data"="2"}
